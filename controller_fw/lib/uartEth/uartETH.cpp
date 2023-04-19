@@ -5,14 +5,13 @@
 #define UART_ETH_TX1 16 // Replace with the actual pin number for UART_ETH_TX1
 #define UART_ETH_CFG 17 // Replace with the actual pin number for UART_ETH_CFG
 
-
   uint8_t ipAddr[4] = {0xc0, 0xa8, 0x01, 0x64};
   uint8_t subnetMask[4] = {0xff, 0xff, 0xff, 0x00};
   uint8_t gatewayAddr[4] = {0xc0, 0xa8, 0x01, 0x01};
   uint8_t sourcePort[2] = {0xd0, 0x07};                         // Port value is inverted Port: 2000 (0x07D0) should be sent as 0xD0, 0x07.
   uint8_t destinationPort[2] = {0xe8, 0x03};                    // Port value is inverted Port: 1000 (0x03E8)should be sent as 0xE8, 0x03.
   uint8_t destinationAddr[4] = {0xc0, 0xa8, 0x01, 0xc8};        
-  uint8_t baudRate[4] = {0x80, 0x25, 0x00, 0x00};               // Baud Rate value is inverted
+  uint8_t baudRate[4] = {0xA0,0x86,0x01,0x00};               // Baud Rate value is inverted
   uint8_t serialConfig[3] = {0x01,0x04,0x08};                   // 3 bytes: {<stop bits>, <parity>, <data length in bits>}
   uint8_t dataLength[4] = {0x00, 0x02, 0x00, 0x00};             // eg. 0x00 0x02 0x00 0x00 (Packing length 2*256=512 bytes).
   uint8_t mode[1] = {0x03};                                          // 0x00 TCP Server, 0x01 TCP Client, 0x02 UDP Server, 0x03 UDP Client
@@ -41,7 +40,9 @@ void uartETHinit()
     Serial.println("Config Complete");
 
     configEnable(false);
-
+    delay(1000);
+    Serial1.end();
+    Serial1.begin(100000, SERIAL_8N1, UART_ETH_RX1, UART_ETH_TX1);
     delay(1000);
 }
 
@@ -74,7 +75,6 @@ void sendSetConfig(byte command, uint8_t * parameters, size_t parameterCount)
   {
     // Do nothing
   }
-  
     // Read response
     uint8_t response = Serial1.read();
 

@@ -15,9 +15,9 @@ void setup()
 void loop()
 {
   
-    Serial1.write(0x32);
+    Serial1.write(byteToSend);
 
-    Serial.printf("Sending: %d \n", 0x32);
+    Serial.printf("Sending: %d \n", byteToSend);
 
   delay(500);
 }

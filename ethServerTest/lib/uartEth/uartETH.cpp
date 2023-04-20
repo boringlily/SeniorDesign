@@ -8,7 +8,7 @@
   uint8_t destinationPort[2] = {0xd0, 0x07};                     // Port value is inverted Port: 1000 (0x03E8)should be sent as 0xE8, 0x03.
   uint8_t destinationAddr[4] = {0xc0, 0xa8, 0x01, 0x64};      
   uint8_t baudRate[4] = {0xA0,0x86,0x01,0x00}; // {0x80, 0x25, 0x00, 0x00};               // Baud Rate value is inverted
-  uint8_t serialConfig[3] = {0x01,0x04,0x08};                // 3 bytes: {<stop bits>, <parity>, <data length in bits>}
+  uint8_t serialConfig[3] = {0x01,0x04,0x08};                 // 3 bytes: {<stop bits>, <parity>, <data length in bits>}
   uint8_t dataLength[4] = {0x00, 0x02, 0x00, 0x00};             // eg. 0x00 0x02 0x00 0x00 (Packing length 2*256=512 bytes).
   uint8_t mode[1] = {0x02};                                     // 0x00 TCP Server, 0x01 TCP Client, 0x02 UDP Server, 0x03 UDP Client
 

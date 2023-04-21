@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.h": "c",
-        "*.c": "c",
-        "cstddef": "cpp",
-        "new": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "enabled"
-}
